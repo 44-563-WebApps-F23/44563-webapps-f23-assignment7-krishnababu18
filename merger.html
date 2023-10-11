@@ -36,6 +36,7 @@
     <button onclick="addEnd()">Add End</button>
     <button onclick="addFront()">Add Front</button>
     <button onclick="remove()">Remove</button>
+    <button onclick="swap()">Swap</button>
 </body>
 <script>
     function addEnd()
@@ -65,5 +66,13 @@
         let container=document.getElementById('target');
         container.insertBefore(element,container.firstChild);
     }
+
+    function swap(){
+		let mItems = document.getElementsByClassName("merger")
+		let l = mItems.length
+		let item = Math.floor(Math.random()* l)
+		let rNumber = mItems[item]
+		rNumber.parentNode.insertBefore(rNumber,rNumber.parentNode.firstChild)	
+	}
 </script>
 </html>
