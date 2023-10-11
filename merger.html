@@ -4,9 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Merger</title>
+    <style>
+        .flex-container {
+          display: flex;  flex-direction:row;
+          background-color: red;
+      }
+    
+    .flex-container > div {  /*div children of the flex container*/
+      background-color: #f1f1f1; 
+      margin: 10px;  padding: 20px;  font-size: 30px;
+    }
+    
+    /* Responsive layout */
+    @media (max-width: 600px) { 
+         .flex-container{
+             flex-direction:column;
+             background-color: green;
+          }
+        }
+    </style>
 </head>
 <body>
-    <h1>Ravipati.Venkata Lahari builds a merger</h1>
+    <h1>Krishna Babu Gali builds a merger</h1>
     <input type="text" class="form-control" id="inputElement">
     <div class="flex-container" id="target">
         <div class="merger">Row item1</div>
@@ -30,11 +49,11 @@
     }
     function remove()
     {
-        let queueItems=document.getElementsByClassName("merger");
-        let len_ele=queueItems.length;
+        let qItems=document.getElementsByClassName("merger");
+        let len_ele=qItems.length;
         if(len_ele>0)
         {
-            queueItems[len_ele-1].remove();
+            qItems[len_ele-1].remove();
         }
     }
     function addFront()
