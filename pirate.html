@@ -71,5 +71,100 @@
         <div class="col-md-2"><img src="treasure map.jpg" alt="Treasure map" width="100" height="100"></div>
     </div> 
  </div>
+
+ <script>
+    let ids=new Array();
+    for(i=0;i<25;i++)
+    {
+        ids.push(i);
+    }
+    let checkCount=0;
+    let penalty=0;
+    let lastCheck=0;
+    let treasureLocation=5;
+    let trapLocation=18;
+    let gameOver=false;
+    
+    function check(position)
+    {
+        if(gameOver)
+        {
+            return;
+        }
+        let id=ids[position];
+        let img=document.getElementById(id);
+        if(position==treasureLocation)
+        {
+            img.src='treasure pic.jpg';
+        }
+        else if(position==trapLocation)
+        {
+            img.src='trap.jpg';
+        }
+        else
+        {
+            img.src='Pirate.jpg';
+        }
+        if(position==treasureLocation)
+        {
+            gameOver=true;
+            penalty=penalty-3;
+        }
+        else if(position==trapLocation)
+        {
+            gameOver=true;
+            penalty=penalty+4;
+        }
+        checkCount++;
+        penalty++;
+        document.getElementById('locations').textContent='Location is:'+checkCount;
+        document.getElementById('penalty').textContent='Penalty is:'+penalty;
+        lastCheck=position;
+    }
+    function help()
+    {
+        if(gameOver)
+        {
+            return;
+        }
+        let treasureRow =Math.floor(treasureLocation/5);
+        let treasureCol=treasureLocation%5;
+        let lastRow = Math.floor(lastCheck/5);
+        let lastCol=lastCheck%5;
+
+
+        let rowDiff=Math.abs(treasureRow-lastRow);
+        let colDiff=Math.abs(treasureCol-lastCol);
+
+
+        if((rowDiff===1 && colDiff===0)||(rowDiff===0 && colDiff===1))
+        {
+            document.getElementById('help').textContent='Can smell it';
+        } 
+        else if(rowDiff+colDiff===2)
+        {
+            document.getElementById('help').textContent='Close Matie';
+
+        }
+        else
+        {
+            document.getElementById('help').textContent='Step Faster';
+        }
+        penalty=penalty+2;
+        document.getElementById('penalty').textContent="Penalty is "+penalty;
+        document.getElementById('help').textContent=text;
+
+    }
+    trapLocation =Math.floor(Math.random()*25);
+    treasureLocation =Math.floor(Math.random()*25);
+    checkCount=0;
+    penalty=0;
+    lastCheck=0;
+    gameOver=false;
+    document.getElementById("locations").textContent="Number of locations checked is 0";
+    document.getElementById("penalty").textContent="Penalty is 0";
+    document.getElementById("help").textContent="Click for help";
+
+    </script>
 </body>
 </html>
